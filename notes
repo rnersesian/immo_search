@@ -1,0 +1,17 @@
+Notes laforet :
+
+https://www.laforet.com/api/immo/properties/coordinates?transaction=buy&agencyPage=lyon3-partdieu&max=200000&rooms=3
+
+Possibilité de récupérer la liste des appartement via les données SIG
+Chaque bien a un id, faire la liste des biens par agence
+quand une nouvelle valeur apparaît -> envoyer la page principale des annonces de l'agence
+
+
+Notes Century 21
+https://www.century21-vu-villeurbanne-zola.com/annonces/achat/b-0-170000/
+
+Pas d'appels API, rendu côté serveur
+nécessité de faire du scrapping
+TODO: Voir si tous les sites Century21 ont le même format
+
+
