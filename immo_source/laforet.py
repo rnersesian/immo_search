@@ -32,6 +32,7 @@ class Laforet(ImmoSource):
                 label=ad_label,
                 price=ad_price,
                 layout=ad_layout,
-                location=ad_location
+                location=ad_location,
+                url=ad_url
             )
             estate.save()
