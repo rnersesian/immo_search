@@ -1,17 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
+from typing import List
+from immo_source.century21 import Century21
+from immo_source.laforet import Laforet
+from immo_source import ImmoSource
 
-url = "https://www.century21-vu-villeurbanne-zola.com/annonces/achat/b-0-170000/p-3/"
+laforet_oullins = Laforet(immo_id="Laforet_Oullins", base_url="https://www.laforet.com/agence-immobiliere/oullins")
+laforet_oullins.update_data()
 
-r = requests.get(url)
-soup = BeautifulSoup(r.text, 'html.parser')
+immo_sources: List[ImmoSource] = [
+    Laforet(immo_id="LF_Oullins", base_url="https://www.laforet.com/agence-immobiliere/oullins"),
+    Century21(immo_id="C21_GR_Oullins", base_url="https://www.century21-granderue-oullins.com"),
+    Century21(immo_id="C21_VB_Zola", base_url="https://www.century21-vu-villeurbanne-zola.com")
+]
 
-ads = soup.select('div.tw-grid div.c-the-property-thumbnail-with-content[data-uid]')
-
-for ad in ads:
-    ad_id = ad.get('data-uid')
-    ad_url = f"https://www.century21-vu-villeurbanne-zola.com/trouver_logement/detail/{ad_id}"
-    ad_request = requests.get(ad_url)
-    ad_soup = BeautifulSoup(ad_request.text, 'html.parser')
-    price = ad_soup.select(".the-property-abstract__price")
-    print(f"Price : {price}")
+for source in immo_sources:
+    source.update_data()

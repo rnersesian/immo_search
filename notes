@@ -1,6 +1,11 @@
+Elements à afficher dans le message telegram
+- Type du bien (ex: Appartement 3 pièces)
+- Surface du bien
+- lien
+
 Notes laforet :
 
-https://www.laforet.com/api/immo/properties/coordinates?transaction=buy&agencyPage=lyon3-partdieu&max=200000&rooms=3
+https://www.laforet.com/agence-immobiliere/oullins/acheter?filter[max]=220000&filter[rooms]=3
 
 Possibilité de récupérer la liste des appartement via les données SIG
 Chaque bien a un id, faire la liste des biens par agence
@@ -15,3 +20,9 @@ nécessité de faire du scrapping
 TODO: Voir si tous les sites Century21 ont le même format
 
 
+BSK Immobiliers
+A voir plus tard, pas très intéressant
+liens pour OULLINS :
+
+Lyon 1:
+https://bskimmobilier.com/acheter?search%5Btransaction_type%5D=SALE&location%5Bradius%5D=0&location%5Btype%5D=coordinates&location%5Bvalue%5D=%7B%22longitude%22%3A4.82839245881%2C%22latitude%22%3A45.7700265344%2C%22id%22%3A4964%7D&location%5Bkeyword%5D=Lyon-1Er-Arrondissement+%2869001%29&search%5Bmin_surface%5D=&search%5Bmax_surface%5D=&search%5Bmin_price%5D=&search%5Bmax_price%5D=&search%5Bid%5D=&extend=1

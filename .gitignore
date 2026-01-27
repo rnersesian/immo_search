@@ -1,3 +1,5 @@
 .venv/
 .env
 __pycache__/
+estates.csv
+temp.txt
