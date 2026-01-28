@@ -24,7 +24,6 @@ class Century21(ImmoSource):
             ad_soup = BeautifulSoup(ad_request.text, 'html.parser')
 
             # Getting ad information
-
             ad_header = ad_soup.select_one("div.c-the-property-abstract")
             title_info = ad_header.select('h1 span')
 
