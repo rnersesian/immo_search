@@ -13,7 +13,7 @@ class Century21(ImmoSource):
     
 
     def update_data(self) -> List[Estate]:
-        r = requests.get(self.ads_list_url)
+        r = requests.get(self.ads_list_url, timeout=self.timeout_duration)
         soup = BeautifulSoup(r.text, 'html.parser')
         ads = soup.select('div.tw-grid div.c-the-property-thumbnail-with-content[data-uid]')
         estate_list = []

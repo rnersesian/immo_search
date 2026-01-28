@@ -10,7 +10,7 @@ class Laforet(ImmoSource):
         self.ads_list_url = f"{base_url}/acheter?filter[max]=160000&filter[rooms]=3"
 
     def update_data(self) -> List[Estate]:
-        r = requests.get(self.ads_list_url)
+        r = requests.get(self.ads_list_url, timeout=self.timeout_duration)
         soup = BeautifulSoup(r.text, 'html.parser')
         favorites = soup.select("div#favoriz--page--1 article")
         standards = soup.select("div#standard--page--1 article")
