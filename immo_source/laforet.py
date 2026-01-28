@@ -1,6 +1,7 @@
 from . import ImmoSource, Estate
 import requests
 from bs4 import BeautifulSoup
+from typing import List
 
 class Laforet(ImmoSource):
     
@@ -8,12 +9,13 @@ class Laforet(ImmoSource):
         super().__init__(immo_id)
         self.ads_list_url = f"{base_url}/acheter?filter[max]=160000&filter[rooms]=3"
 
-    def update_data(self):
+    def update_data(self) -> List[Estate]:
         r = requests.get(self.ads_list_url)
         soup = BeautifulSoup(r.text, 'html.parser')
         favorites = soup.select("div#favoriz--page--1 article")
         standards = soup.select("div#standard--page--1 article")
         ads = favorites + standards
+        estate_list = []
 
         for ad in ads:
             ad_url = "https://www.laforet.com" + ad.select_one("a").get("href")
@@ -27,12 +29,14 @@ class Laforet(ImmoSource):
             ad_layout = f"{layout_data.split('•')[1].strip()} - {layout_data.split('•')[0].strip()}"
             ad_id = self.immo_id + "_" + ad.get("data-counter-id-value")
 
-            estate = Estate(
-                id=ad_id,
-                label=ad_label,
-                price=ad_price,
-                layout=ad_layout,
-                location=ad_location,
-                url=ad_url
-            )
-            estate.save()
+            estate_list.append(
+                Estate(
+                    id=ad_id,
+                    label=ad_label,
+                    price=ad_price,
+                    layout=ad_layout,
+                    location=ad_location,
+                    url=ad_url
+            ))
+        return estate_list
+

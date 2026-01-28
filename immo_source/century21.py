@@ -1,6 +1,7 @@
 from . import ImmoSource, Estate
 import requests
 from bs4 import BeautifulSoup
+from typing import List
 
 class Century21(ImmoSource):
 
@@ -11,10 +12,11 @@ class Century21(ImmoSource):
         self.ad_detail_url = f"{self.base_url}/trouver_logement/detail/"
     
 
-    def update_data(self):
+    def update_data(self) -> List[Estate]:
         r = requests.get(self.ads_list_url)
         soup = BeautifulSoup(r.text, 'html.parser')
         ads = soup.select('div.tw-grid div.c-the-property-thumbnail-with-content[data-uid]')
+        estate_list = []
         
         for ad in ads:
             ad_id = ad.get('data-uid')
@@ -34,15 +36,16 @@ class Century21(ImmoSource):
             ad_location = title_info[2].text.strip()
             ad_id = self.immo_id + ad_header.select("div > div > div")[0].text.split(":")[1].strip()
 
-            estate = Estate(
-                id=ad_id,
-                label=ad_label,
-                price=ad_price,
-                layout=ad_layout,
-                location=ad_location,
-                url=ad_url
-            )
-            estate.save()
+            estate_list.append(
+                Estate(
+                    id=ad_id,
+                    label=ad_label,
+                    price=ad_price,
+                    layout=ad_layout,
+                    location=ad_location,
+                    url=ad_url
+            ))
+        return estate_list
 
             
             
