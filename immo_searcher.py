@@ -6,7 +6,8 @@ import time
 from collections import deque
 
 TIME_BTW_ANNOUNCES = 0.5
-TIME_BTW_UPDATES = 10.0
+TIME_BTW_UPDATES = 300.0
+TIME_BTW_ALIVE = 7200
 
 class ImmoSearcher():
 

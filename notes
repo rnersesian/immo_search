@@ -10,14 +10,16 @@ https://www.laforet.com/agence-immobiliere/oullins/acheter?filter[max]=220000&fi
 Possibilité de récupérer la liste des appartement via les données SIG
 Chaque bien a un id, faire la liste des biens par agence
 quand une nouvelle valeur apparaît -> envoyer la page principale des annonces de l'agence
+Il semble que le filtre de prix soit cassé, il faut mettre 6000 de moins que la valeur voulue 
 
 
 Notes Century 21
+
 https://www.century21-vu-villeurbanne-zola.com/annonces/achat/b-0-170000/
 
 Pas d'appels API, rendu côté serveur
 nécessité de faire du scrapping
-TODO: Voir si tous les sites Century21 ont le même format
+TODO: Trop de requêtes, possibilité de récupérer toutes les annonces sur la page principale
 
 
 BSK Immobiliers

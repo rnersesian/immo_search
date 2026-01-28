@@ -37,10 +37,24 @@ if __name__ == "__main__":
 
     IS = ImmoSearcher(
         sources=[
-            Laforet(immo_id="LF_Oullins", base_url="https://www.laforet.com/agence-immobiliere/oullins"),
+            Orpi(immo_id="ORPI", base_url="https://www.orpi.com"),
             Century21(immo_id="C21_GR_Oullins", base_url="https://www.century21-granderue-oullins.com"),
             Century21(immo_id="C21_VB_Zola", base_url="https://www.century21-vu-villeurbanne-zola.com"),
-            Orpi(immo_id="ORPI", base_url="https://www.orpi.com")
+            Century21(immo_id="C21_LDI_Lyon8", base_url="https://www.century21-hestia-ldi-lyon-8.com"),
+            Century21(immo_id="C21_Dauph_Lacass", base_url="https://www.century21-dauphine-lacassagne-lyon.com"),
+            Century21(immo_id="C21_Rive_Gauche", base_url="https://www.century21-rg-lyon-6.com"),
+            Century21(immo_id="C21_Presquile", base_url="https://www.century21-pi-immobilier-69000.com"),
+            Century21(immo_id="C21_Lyon4", base_url="https://www.century21-perspective-lyon-4.com"),
+            Century21(immo_id="C21_Tassin", base_url="https://www.century21-ldl-tassin.com"),
+            Century21(immo_id="C21_VB_Decker", base_url="https://www.century21-vu-villeurbanne-becker.com"),
+            Laforet(immo_id="LF_Oullins", base_url="https://www.laforet.com/agence-immobiliere/oullins"),
+            Laforet(immo_id="LF_Lyon2", base_url="https://www.laforet.com/agence-immobiliere/lyon2"),
+            Laforet(immo_id="LF_Lyon3_MCHT", base_url="https://www.laforet.com/agence-immobiliere/lyon3-montchat"),
+            Laforet(immo_id="LF_Lyon3_PD", base_url="https://www.laforet.com/agence-immobiliere/lyon3-partdieu"),
+            Laforet(immo_id="LF_Lyon4", base_url="https://www.laforet.com/agence-immobiliere/lyon4"),
+            Laforet(immo_id="LF_Lyon7", base_url="https://www.laforet.com/agence-immobiliere/lyon-7"),
+            Laforet(immo_id="LF_Lyon8", base_url="https://www.laforet.com/agence-immobiliere/lyon8"),
+            Laforet(immo_id="LF_VB_Rep", base_url="https://www.laforet.com/agence-immobiliere/villeurbanne-republique"),
         ],
         chatbot=BotTelegram(
             username=TG_BOT_USERNAME,
