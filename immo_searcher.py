@@ -5,7 +5,7 @@ import csv
 import time
 from collections import deque
 
-TIME_BTW_ANNOUNCES = 0.5
+TIME_BTW_ANNOUNCES = 3.0
 TIME_BTW_UPDATES = 300.0
 
 class ImmoSearcher():
@@ -50,6 +50,9 @@ class ImmoSearcher():
 
             elif len(self.broadcast_queue) > 0:
                 estate_to_broadcast = self.broadcast_queue.popleft()
+                print(f"\n############ BROADCASTING -> {estate_to_broadcast.id}")
+                print(f"#### URL -> {estate_to_broadcast.url}")
+                print(f"#### Broadcast in queue : {len(self.broadcast_queue)}\n")
                 self.broadcast_estate(estate_to_broadcast)
                 self.announce_timer = TIME_BTW_ANNOUNCES
 
