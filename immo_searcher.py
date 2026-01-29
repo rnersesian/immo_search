@@ -4,16 +4,21 @@ from bot_telegram import BotTelegram
 import csv
 import time
 from collections import deque
+from datetime import datetime
 
 TIME_BTW_ANNOUNCES = 3.0
 TIME_BTW_UPDATES = 300.0
+
+def is_quiet_hours() -> bool:
+    hour = datetime.now().hour
+    return hour >= 21 or hour < 8
 
 class ImmoSearcher():
 
     def __init__(self, sources: List[ImmoSource], chatbot: BotTelegram, ads_file="estates.csv"):
         self.sources = sources
         self.broadcast_queue: Deque[Estate] = deque()
-        self.existing_ids: Set[str] = set()
+        self.existing_urls: Set[str] = set()
         
         self.announce_timer: float = 0
         self.update_timer: float = 0
@@ -27,20 +32,24 @@ class ImmoSearcher():
             with open(self.estate_data_file, "r") as file:
                 reader = csv.DictReader(file, delimiter=";")
                 for row in reader:
-                    self.existing_ids.add(row["id"])
+                    self.existing_urls.add(row["url"])
         except FileNotFoundError as e:
             print(f"File not found : {e}")
             with open(self.estate_data_file, "w") as file:
                 file.write("id;label;price;layout;location;url\n")
 
-        print(self.existing_ids)
+        print(self.existing_urls)
 
 
     def  run(self):
         last_time = time.perf_counter()
         
         while True:
-            
+            if is_quiet_hours():
+                print("Is quiet hour, sleeping")
+                time.sleep(60)  # Vérifie toutes les minutes pendant la nuit
+                continue
+
             now = time.perf_counter()
             elapsed = now - last_time
 
@@ -83,20 +92,22 @@ class ImmoSearcher():
                 
         print(f"Number of estates found : {len(estates)}")
         # Removing estates already saved
-        estates = [estate for estate in estates if estate.id not in self.existing_ids]
-        print(f"After filtering: {len(estates)} new estates")
+        estates = [estate for estate in estates if estate.url not in self.existing_urls]
+
 
         if len(estates) > 0:
             self.save_estates(estates)
             
         for estate in estates:
-            try:
-                print(f"Adding to broadcast : {estate.id}")
-                self.broadcast_queue.append(estate)
-                self.existing_ids.add(estate.id)
+            # Not checking by id because of crossposting
+            if estate.url not in self.existing_urls:
+                try:
+                    print(f"Adding to broadcast : {estate.url}")
+                    self.broadcast_queue.append(estate)
+                    self.existing_urls.add(estate.url)
 
-            except Exception as e:
-                print(f"Somethng went wrong : {e}")
+                except Exception as e:
+                    print(f"Somethng went wrong : {e}")
 
 
 
