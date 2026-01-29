@@ -92,11 +92,8 @@ class ImmoSearcher():
                 
         print(f"Number of estates found : {len(estates)}")
         # Removing estates already saved
-        estates = [estate for estate in estates if estate.url not in self.existing_urls]
-
-
-        if len(estates) > 0:
-            self.save_estates(estates)
+        estates
+        estates_to_save: List[Estate] = []
             
         for estate in estates:
             # Not checking by id because of crossposting
@@ -105,9 +102,13 @@ class ImmoSearcher():
                     print(f"Adding to broadcast : {estate.url}")
                     self.broadcast_queue.append(estate)
                     self.existing_urls.add(estate.url)
+                    estates_to_save.append(estate)
 
                 except Exception as e:
                     print(f"Somethng went wrong : {e}")
+
+        if len(estates_to_save) > 0:
+            self.save_estates(estates_to_save)
 
 
 
