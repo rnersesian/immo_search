@@ -7,6 +7,7 @@ from immo_source.orpi import Orpi
 from immo_source.guyhoquet import GuyHoquet
 from immo_source.era_immobilier import EraImmobilier
 from immo_source.iad import IAD
+from immo_source.safti import Safti 
 
 from bot_telegram import BotTelegram
 from immo_searcher import ImmoSearcher
