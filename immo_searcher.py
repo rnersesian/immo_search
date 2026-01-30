@@ -43,7 +43,10 @@ class ImmoSearcher():
                 file.write("id;label;price;layout;location;url\n")
 
 
-    def  run(self):
+    def run(self):
+        """Main loop"""
+
+        print("Starting immo searcher") 
         last_time = time.perf_counter()
         
         while True:
