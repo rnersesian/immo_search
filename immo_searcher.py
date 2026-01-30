@@ -9,8 +9,8 @@ from datetime import datetime
 import math
 
 TIME_BTW_ANNOUNCES = 3.0
-MIN_TIME_BTW_UPDATE = 5400
-MAX_TIME_BTW_UPDATES = 9000
+MIN_TIME_BTW_UPDATE = 1200
+MAX_TIME_BTW_UPDATES = 1800
 
 def is_quiet_hours() -> bool:
     """Check if quiet hours"""
@@ -41,8 +41,6 @@ class ImmoSearcher():
             print(f"File not found : {e}")
             with open(self.estate_data_file, "w") as file:
                 file.write("id;label;price;layout;location;url\n")
-
-        print(self.existing_urls)
 
 
     def  run(self):

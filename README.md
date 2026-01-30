@@ -7,6 +7,7 @@
 TG_BOT_API_TOKEN=Your_token
 TG_BOT_API_USERNAME=bot_username
 TG_CHAT_ID=Your_chat_id
+ESTATE_DATA_FILE=yourfile.csv
 ```
 
 #### Installation

@@ -52,8 +52,7 @@ if __name__ == "__main__":
             EraImmobilier(immo_id="ERA_Lyon7", agency_id="245"),
             EraImmobilier(immo_id="ERA_VB_GC", agency_id="195"),
             IAD(immo_id="IAD"),
-
-
+            Safti(immo_id="SAFTI"),
         ],
         chatbot=BotTelegram(
             username=TG_BOT_USERNAME,

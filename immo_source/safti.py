@@ -34,4 +34,25 @@ class Safti(ImmoSource):
             print(f"Failed to access URL :\n{self.api_url}\n got status code '{r.status_code}'")
             return
         data = json.loads(r.text)
-        ads = data[""]
+        ads = data["properties"]
+
+        estates: List[Estate] = []
+        for ad in ads:
+            ad_url = f"{self.base_url}/{ad["city"].lower().replace(" ", "-")}-{ad["postCode"]}/{ad["propertyReference"]}"
+            price = str(ad["price"])
+            ad_price = f"{price[:-3]} {price[-3:]} €"
+            ad_location = ad["city"]
+            ad_layout = f"{ad["roomNumber"]} pièces - {ad["propertySurface"]} m²"
+            ad_label = ad["propertyType"]
+            ad_id = str(ad["propertyReference"])
+
+            estates.append(Estate(
+                id=ad_id,
+                label=ad_label,
+                price=ad_price,
+                layout=ad_layout,
+                location=ad_location,
+                url=ad_url
+            ))
+
+        return estates
