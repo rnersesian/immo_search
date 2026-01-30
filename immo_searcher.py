@@ -6,6 +6,7 @@ import time
 import random
 from collections import deque
 from datetime import datetime
+import math
 
 TIME_BTW_ANNOUNCES = 3.0
 MIN_TIME_BTW_UPDATE = 5400
@@ -75,7 +76,9 @@ class ImmoSearcher():
             else:
                 print("Updating data")
                 self.update_data()
-                self.update_timer = random.uniform(MIN_TIME_BTW_UPDATE, MAX_TIME_BTW_UPDATES)
+                udpate_delay =  float(math.floor(random.uniform(MIN_TIME_BTW_UPDATE, MAX_TIME_BTW_UPDATES)))
+                print(f"Waiting for {udpate_delay} seconds before next udpate")
+                self.update_timer = udpate_delay
 
             last_time = now
 
