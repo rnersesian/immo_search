@@ -1,7 +1,11 @@
 .venv/
 .env
 __pycache__/
+
 estates.csv
+
+exp.py
+
 temp.txt
 temp.html
 test.html
