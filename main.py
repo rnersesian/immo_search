@@ -5,7 +5,8 @@ from immo_source.century21 import Century21
 from immo_source.laforet import Laforet
 from immo_source.orpi import Orpi
 from immo_source.guyhoquet import GuyHoquet
-from immo_source.era_immobilier import EraImmobilier 
+from immo_source.era_immobilier import EraImmobilier
+from immo_source.iad import IAD
 
 from bot_telegram import BotTelegram
 from immo_searcher import ImmoSearcher
@@ -50,6 +51,7 @@ if __name__ == "__main__":
             EraImmobilier(immo_id="ERA_Lyon3", agency_id="262"),
             EraImmobilier(immo_id="ERA_Lyon7", agency_id="245"),
             EraImmobilier(immo_id="ERA_VB_GC", agency_id="195"),
+            IAD(immo_id="IAD"),
 
 
         ],

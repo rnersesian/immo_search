@@ -102,9 +102,7 @@ class ImmoSearcher():
 
         
                 
-        print(f"Number of estates found : {len(estates)}")
-        # Removing estates already saved
-        estates
+        nb_new_estate = 0
         estates_to_save: List[Estate] = []
             
         for estate in estates:
@@ -115,12 +113,16 @@ class ImmoSearcher():
                     self.broadcast_queue.append(estate)
                     self.existing_urls.add(estate.url)
                     estates_to_save.append(estate)
+                    nb_new_estate += 1
 
                 except Exception as e:
                     print(f"Somethng went wrong : {e}")
 
         if len(estates_to_save) > 0:
             self.save_estates(estates_to_save)
+
+        print(f"New estates found : {nb_new_estate}")
+        
 
 
 
