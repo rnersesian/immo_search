@@ -3,13 +3,16 @@ from immo_source import Estate, ImmoSource
 from bot_telegram import BotTelegram
 import csv
 import time
+import random
 from collections import deque
 from datetime import datetime
 
 TIME_BTW_ANNOUNCES = 3.0
-TIME_BTW_UPDATES = 300.0
+MIN_TIME_BTW_UPDATE = 5400
+MAX_TIME_BTW_UPDATES = 9000
 
 def is_quiet_hours() -> bool:
+    """Check if quiet hours"""
     hour = datetime.now().hour
     return hour >= 21 or hour < 8
 
@@ -72,7 +75,7 @@ class ImmoSearcher():
             else:
                 print("Updating data")
                 self.update_data()
-                self.update_timer = TIME_BTW_UPDATES
+                self.update_timer = random.uniform(MIN_TIME_BTW_UPDATE, MAX_TIME_BTW_UPDATES)
 
             last_time = now
 
@@ -89,6 +92,12 @@ class ImmoSearcher():
                 # Notify on telegram is something wrong
                 self.broadcast_error(f"Problème avec l'agence \n {source.immo_id}")
                 print(f"Error from {source.immo_id}: {type(e).__name__}: {e}")
+            
+            # random delay between calls to avoid suspicions 1 - 3 seconds
+            delay = random.uniform(1,3)
+            time.sleep(delay)
+
+        
                 
         print(f"Number of estates found : {len(estates)}")
         # Removing estates already saved
