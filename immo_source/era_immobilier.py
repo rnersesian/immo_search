@@ -29,7 +29,8 @@ class EraImmobilier(ImmoSource):
         for ad in ads:
             ad_id = ad["id"]
             ad_label = ad["type_bien"]
-            ad_price = f"{ad["prix"]} €"
+            ad_price = str(ad["prix"])
+            ad_price = f"{ad_price[:-3]} {ad_price[-3:]} €" # temp fix
             ad_layout = f"{ad["surface_habitable"]} m² - {ad["nb_pieces"]} pièces"
             ad_location = f"{ad["code_postal"]} - {ad["ville"]}"
             ad_url = f"{self.base_url}/{ad["agence"]["slug"]}/annonces/{ad_id}"
