@@ -25,6 +25,7 @@ from immo_searcher import ImmoSearcher
 from immo_source.century21 import Century21
 from immo_source.laforet import Laforet
 from immo_source.orpi import Orpi
+from immo_source.guyhoquet import GuyHoquet
 from bot_telegram import BotTelegram
 
 
@@ -55,6 +56,15 @@ if __name__ == "__main__":
             Laforet(immo_id="LF_Lyon7", base_url="https://www.laforet.com/agence-immobiliere/lyon-7"),
             Laforet(immo_id="LF_Lyon8", base_url="https://www.laforet.com/agence-immobiliere/lyon8"),
             Laforet(immo_id="LF_VB_Rep", base_url="https://www.laforet.com/agence-immobiliere/villeurbanne-republique"),
+            GuyHoquet(immo_id="GH_Oullins", base_url="https://oullins.guy-hoquet.com"),
+            GuyHoquet(immo_id="GH_Lyon3", base_url="https://lyon-3-montchat.guy-hoquet.com"),
+            GuyHoquet(immo_id="GH_Lyon4", base_url="https://lyon-4.guy-hoquet.com/"),
+            GuyHoquet(immo_id="GH_Lyon6", base_url="https://lyon-6-rhone.guy-hoquet.com"),
+            GuyHoquet(immo_id="GH_Lyon7", base_url="https://lyon-7-sud.guy-hoquet.com"),
+            GuyHoquet(immo_id="GH_Lyon9", base_url="https://lyon-9.guy-hoquet.com/"),
+            GuyHoquet(immo_id="GH_Bron", base_url="https://villeurbanne-zola.guy-hoquet.com"),
+            GuyHoquet(immo_id="GH_VB", base_url="https://villeurbanne-zola.guy-hoquet.com"),
+
         ],
         chatbot=BotTelegram(
             username=TG_BOT_USERNAME,
