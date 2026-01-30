@@ -9,10 +9,10 @@ era_api_url = "https://api.eraimmobilier.com/api/v2/annonces/search?page=1&type_
 
 class EraImmobilier(ImmoSource):
 
-    def __init__(self, immo_id, agency_id, base_url="https://www.eraimmobilier.com"):
+    def __init__(self, immo_id: str, agency_id: str, base_url="https://www.eraimmobilier.com"):
         super().__init__(immo_id)
         self.base_url = base_url
-        self.api_url = era_api_url + str(agency_id)
+        self.api_url = era_api_url + agency_id
         self.agency_id = agency_id
         
 
