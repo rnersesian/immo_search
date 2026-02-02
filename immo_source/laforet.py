@@ -18,7 +18,7 @@ class Laforet(ImmoSource):
         estate_list = []
 
         for ad in ads:
-            ad_url = "https://www.laforet.com" + ad.select_one("a").get("href")
+            ad_url = ad.select_one("a").get("href")
             layout_data = ad.select('div > a div div')[0].text.strip()
             
             ad_price = ad.select('div > a h3 span span')[1].text.strip()
