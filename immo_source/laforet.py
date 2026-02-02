@@ -19,6 +19,7 @@ class Laforet(ImmoSource):
 
         for ad in ads:
             ad_url = ad.select_one("a").get("href")
+            ad_url = f"https://{ad_url[2:]}"
             layout_data = ad.select('div > a div div')[0].text.strip()
             
             ad_price = ad.select('div > a h3 span span')[1].text.strip()
