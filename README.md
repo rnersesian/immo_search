@@ -1,5 +1,5 @@
 # Immo Searcher
-
+Bot for getting exclusive estate ads on telegram
 ### Configuration
 
 #### Add a .env
